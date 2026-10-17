@@ -6,7 +6,7 @@ from fastapi import HTTPException, status
 import requests
 import os
 
-NOTIFICATION_SERVICE_URL = os.getenv("NOTIFICATION_SERVICE_URL", "http://notification_service:8001")
+NOTIFICATION_SERVICE_URL = os.getenv("NOTIFICATION_SERVICE_URL")
 
 class AppointmentService:
 
@@ -65,13 +65,14 @@ class AppointmentService:
         db.refresh(appointment)
 
         # Disparo de notificación al microservicio secundario
-        try:
-            requests.post(f"{NOTIFICATION_SERVICE_URL}/notify", json={
-                "email": patient.email,
-                "message": f"Cita confirmada para la fecha: {appointment.appointment_date}"
-            }, timeout=2)
-        except Exception:
-            pass # No bloquea la transacción si falla la notificación
+        if NOTIFICATION_SERVICE_URL:
+            try:
+                requests.post(f"{NOTIFICATION_SERVICE_URL}/notify", json={
+                    "email": patient.email,
+                    "message": f"Cita confirmada para la fecha: {appointment.appointment_date}"
+                }, timeout=2)
+            except Exception:
+                pass # No bloquea la transacción si falla la notificación
 
         return appointment
 

@@ -21,7 +21,7 @@ if DATABASE_URL is None:
             database=DB_NAME,
         )
         if DB_HOST
-        else "sqlite:///./medical.db"
+        else f"sqlite:///{'/tmp/medical.db' if os.getenv('VERCEL') == '1' else './medical.db'}"
     )
 
 connect_args = {"check_same_thread": False} if str(DATABASE_URL).startswith("sqlite") else {}

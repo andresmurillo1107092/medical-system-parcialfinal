@@ -1,5 +1,6 @@
 # API REST Routers (Endpoints)
 from fastapi import FastAPI, Depends, status
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from typing import List
 from app.database import get_db, Base, engine
@@ -10,6 +11,11 @@ from app.services import AppointmentService
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="API Sistema de Gestión de Citas Médicas")
+
+
+@app.get("/", include_in_schema=False)
+def home():
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/health")
