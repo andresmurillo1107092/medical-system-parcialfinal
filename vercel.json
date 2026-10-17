@@ -1,6 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
+    "frontend": {
+      "root": "frontend",
+      "framework": "vite"
+    },
     "backend": {
       "root": "backend",
       "framework": "fastapi"
@@ -12,15 +16,51 @@
   },
   "rewrites": [
     {
-      "source": "/notify",
+      "source": "/notify/:path*",
       "destination": {
         "service": "notification_service"
       }
     },
     {
-      "source": "/(.*)",
+      "source": "/health",
       "destination": {
         "service": "backend"
+      }
+    },
+    {
+      "source": "/patients/:path*",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/doctors/:path*",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/appointments/:path*",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/docs/:path*",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/openapi.json",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
       }
     }
   ]

@@ -6,7 +6,9 @@ from fastapi import HTTPException, status
 import requests
 import os
 
-NOTIFICATION_SERVICE_URL = os.getenv("NOTIFICATION_SERVICE_URL")
+NOTIFICATION_SERVICE_URL = os.getenv("NOTIFICATION_SERVICE_URL") or (
+    f"https://{os.environ['VERCEL_URL']}" if os.getenv("VERCEL_URL") else None
+)
 
 class AppointmentService:
 

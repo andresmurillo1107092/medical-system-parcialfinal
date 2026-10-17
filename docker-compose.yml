@@ -45,6 +45,22 @@ services:
     networks:
       - medical_network
 
+  frontend:
+    build: ./frontend
+    image: medical-system-ui:latest
+    container_name: medical_frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      API_BACKEND_URL: http://backend:8000
+      NOTIFICATION_SERVICE_URL: http://notification_service:8001
+    depends_on:
+      - backend
+      - notification_service
+    networks:
+      - medical_network
+
 volumes:
   mysql_data:
 

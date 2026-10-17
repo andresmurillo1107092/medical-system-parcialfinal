@@ -59,6 +59,10 @@ Importa el repositorio como un proyecto multi-servicio desde la raíz. `vercel.j
 
 Sin `DATABASE_URL`, Vercel usa SQLite temporal en `/tmp` para demostraciones; sus datos no son persistentes. Para conservar pacientes y citas, configura `DATABASE_URL` con la URL de una base MySQL externa compatible. Las notificaciones externas se desactivan si `NOTIFICATION_SERVICE_URL` no está configurada.
 
+## Interfaz web
+
+La interfaz de gestión se sirve desde `/` en Vercel. En local se inicia junto con los servicios usando `docker compose up --build` y queda disponible en <http://localhost:5173>. Incluye agenda, búsqueda, disponibilidad por profesional y formularios conectados al backend.
+
 ## Seguridad
 
 Esta base es para desarrollo. No uses datos médicos reales sin agregar autenticación, autorización, cifrado, auditoría, gestión de secretos y los controles regulatorios aplicables.
