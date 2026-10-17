@@ -18,7 +18,7 @@ services:
 
   backend:
     build: ./backend
-    image: medical-backend:latest
+    image: andresmurillo20/medical-system-parcialfinal:backend
     container_name: medical_backend
     restart: always
     ports:
@@ -37,7 +37,7 @@ services:
 
   notification_service:
     build: ./notification_service
-    image: notification-service:latest
+    image: andresmurillo20/medical-system-parcialfinal:notification-service
     container_name: notification_service
     restart: unless-stopped
     ports:

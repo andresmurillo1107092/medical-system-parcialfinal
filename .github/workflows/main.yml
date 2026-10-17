@@ -49,8 +49,8 @@ jobs:
           context: ./backend
           push: true
           tags: |
-            ${{ env.DOCKERHUB_USERNAME }}/medical-backend:latest
-            ${{ env.DOCKERHUB_USERNAME }}/medical-backend:${{ github.sha }}
+            ${{ env.DOCKERHUB_USERNAME }}/medical-system-parcialfinal:backend
+            ${{ env.DOCKERHUB_USERNAME }}/medical-system-parcialfinal:backend-${{ github.sha }}
       - name: Publicar servicio de notificaciones
         uses: docker/build-push-action@v6
         if: env.DOCKERHUB_USERNAME != '' && env.DOCKERHUB_TOKEN != ''
@@ -58,5 +58,5 @@ jobs:
           context: ./notification_service
           push: true
           tags: |
-            ${{ env.DOCKERHUB_USERNAME }}/notification-service:latest
-            ${{ env.DOCKERHUB_USERNAME }}/notification-service:${{ github.sha }}
+            ${{ env.DOCKERHUB_USERNAME }}/medical-system-parcialfinal:notification-service
+            ${{ env.DOCKERHUB_USERNAME }}/medical-system-parcialfinal:notification-service-${{ github.sha }}

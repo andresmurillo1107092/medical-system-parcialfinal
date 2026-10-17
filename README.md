@@ -47,7 +47,7 @@ El servicio de notificaciones simula el envío; registra el mensaje, pero no con
 
 ## Publicar imágenes en Docker Hub
 
-Crea dos repositorios públicos en Docker Hub: `medical-backend` y `notification-service`. En el repositorio de GitHub, configura los Actions secrets `DOCKERHUB_USERNAME` y `DOCKERHUB_TOKEN` (un access token de Docker Hub). Cada push a `main` construye y publica ambas imágenes con etiquetas `latest` y el SHA del commit. Los pull requests solo construyen las imágenes y no requieren secretos.
+Crea un repositorio público `medical-system-parcialfinal` en Docker Hub. Las dos imágenes se publican allí como `backend` y `notification-service`, además de recibir una etiqueta con el SHA del commit. En el repositorio de GitHub, configura los Actions secrets `DOCKERHUB_USERNAME` y `DOCKERHUB_TOKEN` (un access token de Docker Hub). Cada push a `main` construye y publica ambas etiquetas; los pull requests solo construyen las imágenes y no requieren secretos.
 
 ## Publicar en GitHub
 
